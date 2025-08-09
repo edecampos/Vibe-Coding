@@ -18,8 +18,8 @@ public class HouseController {
 
     @GetMapping(value = "/cheapest", produces = MediaType.TEXT_HTML_VALUE)
     public String getCheapestHousesAsTable(
-            @RequestParam(defaultValue = "5926 MARSH CIRCLE LOVELAND OH 45140") String address,
-            @RequestParam(defaultValue = "100") int radius
+            @RequestParam(name = "address", required = true) String address,
+            @RequestParam(name = "radius", required = true) int radius
     ) {
         List<House> houses = houseService.getTop10CheapestPerSqFt(address, radius);
 
