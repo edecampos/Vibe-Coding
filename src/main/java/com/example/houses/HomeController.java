@@ -9,30 +9,47 @@ public class HomeController {
 
     @GetMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
     public String home() {
+        // Reliable Cognizant Logo PNG (public CDN)
+        String logoUrl = "https://upload.wikimedia.org/wikipedia/commons/6/6e/Cognizant_logo.svg";
+        // Watermark logo (SVG, can be made very large and faint)
+        String watermarkLogo = "https://upload.wikimedia.org/wikipedia/commons/6/6e/Cognizant_logo.svg";
+
         return "<html>" +
             "<head><title>Welcome to Vibe Coding Project 2025!</title>" +
-            "<link rel='icon' href='https://www.cognizant.com/content/dam/cognizant/images/logo/Cognizant_Logo_Blue.png'/>" +
-            // Cognizant color palette
+            "<meta name='viewport' content='width=device-width,initial-scale=1'/>" +
+            "<link rel='icon' href='" + logoUrl + "'/>" +
             "<style>" +
-            "body{font-family:Segoe UI,Arial,sans-serif;background:linear-gradient(120deg,#0057b7 0%,#3eb6e7 100%);padding:0;margin:0;}" +
-            ".container{max-width:600px;background:#fff;border-radius:16px;box-shadow:0 8px 36px #0057b722;margin:3em auto 1em auto;padding:2em 2em 2em 2em;}" +
-            ".logo-row{display:flex;align-items:center;justify-content:center;margin-bottom:2em;}" +
-            ".logo-img{height:56px;margin-right:12px;}" +
-            ".title{font-size:2.1em;font-weight:600;color:#0033a0;margin-bottom:0.7em;text-align:center;}" +
-            ".subtitle{font-size:1.12em;color:#333;margin-bottom:2em;text-align:center;}" +
-            ".notice{background:#e6f0fa;color:#0033a0;border-left:8px solid #3eb6e7;padding:1em;margin-bottom:2em;border-radius:8px;font-size:1.08em;display:flex;align-items:center;gap:12px;}" +
-            ".notice .icon{font-size:1.5em;}" +
-            ".steps{margin-bottom:1.5em;}" +
-            ".steps-list{display:flex;flex-direction:row;justify-content:space-between;margin-bottom:2em;padding:0;list-style:none;}" +
-            ".steps-list li{flex:1;padding:1em 0.5em;background:#f4f8fb;border-radius:12px;margin:0 0.3em;font-size:1em;font-weight:500;color:#0057b7;box-shadow:0 2px 8px #0057b710;display:flex;align-items:center;justify-content:center;}" +
+            // Background with watermark logo
+            "body{font-family:Segoe UI,Arial,sans-serif;" +
+            "background:linear-gradient(120deg,#0057b7 0%,#3eb6e7 100%);" +
+            "margin:0;padding:0;min-height:100vh;}" +
+            "body::before{" +
+            "content:'';position:fixed;z-index:0;top:50%;left:50%;transform:translate(-50%,-50%);" +
+            "background:url('" + watermarkLogo + "') no-repeat center center;opacity:0.08;" +
+            "background-size:900px;" +
+            "width:900px;height:280px;pointer-events:none;}" +
+            ".container{position:relative;z-index:1;max-width:640px;background:#fff;border-radius:18px;box-shadow:0 8px 36px #0057b722;margin:3em auto 1.7em auto;padding:2.2em 2.2em 2.2em 2.2em;}" +
+
+            ".logo-row{display:flex;align-items:center;justify-content:center;margin-bottom:1.1em;}" +
+            ".logo-img{height:48px;margin-right:18px;box-shadow:0 2px 8px #0057b710;border-radius:8px;background:#fff;}" +
+            ".title{font-size:2.1em;font-weight:700;color:#0033a0;margin-bottom:0.1em;text-align:left;}" +
+
+            ".notice{background:#e6f0fa;color:#0057b7;border-left:7px solid #3eb6e7;box-shadow:0 2px 10px #0057b710;padding:1em 1.5em;margin-bottom:2em;border-radius:10px;font-size:1.11em;display:flex;align-items:center;gap:14px;}" +
+            ".notice .icon{font-size:1.65em;vertical-align:middle;}" +
+            ".notice strong{color:#0033a0;}" +
+
+            ".steps-bar{display:flex;justify-content:space-between;gap:18px;margin-bottom:2.2em;}" +
+            ".step-card{flex:1;background:#f4f8fb;border-radius:12px;padding:1em 0.4em;text-align:center;font-size:1.06em;color:#0057b7;font-weight:600;box-shadow:0 2px 8px #0057b710;}" +
+
             ".step{display:none;}" +
             ".step.active{display:block;}" +
-            "label{display:block;margin:1em 0 0.3em 0;font-weight:600;color:#0033a0;}" +
-            "input[type=text], input[type=number]{width:97%;padding:0.7em;margin-bottom:1em;border:1px solid #d1dbe6;border-radius:8px;font-size:1em;background:#f7fbfd;}" +
-            "button{background:linear-gradient(90deg,#0057b7 0%,#3eb6e7 100%);color:#fff;padding:0.7em 2.2em;border:none;border-radius:8px;font-size:1.05em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px #0057b710;transition:filter 0.18s;}" +
+            "label{display:block;margin:1em 0 0.2em 0;font-weight:600;color:#0033a0;}" +
+            "input[type=text], input[type=number]{width:97%;padding:0.7em;margin-bottom:1.2em;border:1px solid #d1dbe6;border-radius:8px;font-size:1em;background:#f7fbfd;}" +
+            "button{background:linear-gradient(90deg,#0057b7 0%,#3eb6e7 100%);color:#fff;padding:0.7em 2.2em;border:none;border-radius:8px;font-size:1.07em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px #0057b710;transition:filter 0.18s;}" +
             "button:hover{filter:brightness(1.08);}" +
-            "#resultsFrame{width:100%;max-width:900px;height:520px;border:none;box-shadow:0 2px 10px #0033a055;margin:2em auto;display:none;border-radius:12px;background:#f4f8fb;}" +
+            "#resultsFrame{width:100%;max-width:900px;height:480px;border:none;box-shadow:0 2px 10px #0033a055;margin:2em auto;display:none;border-radius:12px;background:#f4f8fb;}" +
             ".summary{background:#eef6fb;color:#0057b7;padding:1em 1.5em;border-radius:10px;margin-bottom:1em;font-size:1.05em;}" +
+
             ".repo-link{display:inline-block;margin-top:2em;padding:0.65em 1.5em;background:#0057b7;color:#fff;border-radius:8px;text-decoration:none;font-weight:500;box-shadow:0 2px 10px #0057b788;transition:background 0.2s;}" +
             ".repo-link:hover{background:#0033a0;}" +
             ".footer{margin-top:2em;text-align:center;color:#0057b7;}" +
@@ -75,20 +92,18 @@ public class HomeController {
             "<div class='container'>" +
 
             "<div class='logo-row'>" +
-            "<img class='logo-img' src='https://www.cognizant.com/content/dam/cognizant/images/logo/Cognizant_Logo_Blue.png' alt='Cognizant'/>" +
+            "<img class='logo-img' src='" + logoUrl + "' alt='Cognizant'/>" +
             "<span class='title'>Vibe Coding Project 2025</span>" +
             "</div>" +
 
-            "<div class='notice'><span class='icon'>ℹ️</span> Please complete <strong>all fields below</strong> to search for the <strong>Top 10 Cheapest Houses per Square Foot</strong>. Both Address and Radius are <strong>mandatory</strong>.</div>" +
+            "<div class='notice'><span class='icon'>ℹ️</span> <span>Please complete <strong>all fields below</strong> to search for the <strong>Top 10 Cheapest Houses per Square Foot</strong>. Both Address and Radius are <strong>mandatory</strong>.</span></div>" +
 
-            "<div class='subtitle'>Find the best value homes near you.<br>Follow the three steps below!</div>" +
+            "<div style='text-align:center;font-size:1.13em;color:#4a5a6a;margin-bottom:1em;'>Find the best value homes near you.<br>Follow the three steps below!</div>" +
 
-            "<div class='steps'>" +
-            "<ul class='steps-list'>" +
-            "<li>1. Enter Address</li>" +
-            "<li>2. Enter Radius</li>" +
-            "<li>3. Review & Search</li>" +
-            "</ul>" +
+            "<div class='steps-bar'>" +
+            "<div class='step-card'>1. Enter Address</div>" +
+            "<div class='step-card'>2. Enter Radius</div>" +
+            "<div class='step-card'>3. Review & Search</div>" +
             "</div>" +
 
             // Step 1: Address
