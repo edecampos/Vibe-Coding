@@ -53,6 +53,7 @@ public class HouseController {
         sb.append("<div class='results-overlay'></div>");
         sb.append("<div class='results-content'>");
         sb.append("<h2 style='color:#0057b7;'>Top 10 Cheapest Houses per Sq. Foot</h2>");
+        // NO scrollable or width-constrained wrapper here -- just render the table!
         sb.append("<table class='results-table'>");
         sb.append("<thead><tr>");
         sb.append("<th>Address</th>");
