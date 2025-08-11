@@ -15,28 +15,26 @@ public class HomeController {
             "<meta name='viewport' content='width=device-width,initial-scale=1'/>" +
             "<link rel='icon' href='" + logoUrl + "'/>" +
             "<style>" +
-            // --- Animated background
             "body{font-family:'Segoe UI',Arial,sans-serif;min-height:100vh;margin:0;padding:0;overflow-x:hidden;" +
-            "background: linear-gradient(-45deg, #0057b7, #3eb6e7, #0057b7, #3eb6e7);" +
-            "background-size: 400% 400%;" +
-            "animation: gradientBG 16s ease-in-out infinite;}" +
+            "background: linear-gradient(-45deg, #0057b7, #3eb6e7, #00c48c, #b825f2);" + // More colors!
+            "background-size: 600% 600%;" +
+            "animation: gradientBG 8s ease-in-out infinite;}" +     // Faster animation!
             "@keyframes gradientBG {" +
             "0% {background-position:0% 50%;} " +
             "50% {background-position:100% 50%;} " +
             "100% {background-position:0% 50%;}" +
             "}" +
-            // --- Container
-            ".container{position:relative;z-index:1;max-width:800px;background:#fff;border-radius:28px;box-shadow:0 12px 48px #0057b722;margin:3em auto 2em auto;padding:2.3em 2em;}" +
-            // --- Logo and title layout
+            ".container{position:relative;z-index:1;max-width:840px;background:#fff;border-radius:28px;box-shadow:0 12px 48px #0057b722;margin:3em auto 2em auto;padding:2.3em 2em;" +
+            "border: 7px solid rgba(0,87,183,0.08);}" + // Add a semi-transparent border to let animation show
             ".logo-block{display:flex;justify-content:center;margin-bottom:16px;}" +
             ".logo-img{height:72px;padding:18px 44px;background:#fff;border-radius:18px;box-shadow:0 2px 18px #0057b722;}" +
             ".title-block{text-align:center;margin-bottom:24px;}" +
             ".title{font-size:2.4em;font-weight:700;color:#0033a0;letter-spacing:1px;}" +
-            // --- Notice box
-            ".notice{background:#e6f0fa;color:#0057b7;border-left:7px solid #3eb6e7;box-shadow:0 2px 10px #0057b710;padding:1em 1.5em;margin-bottom:2em;border-radius:16px;font-size:1.22em;display:flex;align-items:center;gap:14px;}" +
+            ".notice{background:#e6f0fa;color:#0057b7;border-left:7px solid #3eb6e7;" +
+            "box-shadow:0 2px 10px #0057b710;padding:1em 1.5em;margin-bottom:2em;border-radius:16px;" +
+            "font-size:1.22em;display:flex;align-items:center;gap:14px;}" +
             ".notice .icon{font-size:1.65em;vertical-align:middle;}" +
             ".notice strong{color:#0033a0;}" +
-            // --- Progress bar
             ".progressbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:2em;position:relative;height:62px;}" +
             ".progressstep{flex:1;text-align:center;position:relative;z-index:1;}" +
             ".progresscircle{width:48px;height:48px;background:#e6f0fa;border-radius:50%;display:inline-block;line-height:48px;font-weight:700;color:#0057b7;font-size:1.3em;box-shadow:0 2px 10px #0057b710;transition:background .3s, color .3s;position:relative;top:0;}" +
@@ -44,22 +42,18 @@ public class HomeController {
             ".progresslabel{margin-top:8px;font-size:1.1em;color:#0057b7;font-weight:600;}" +
             ".progressbar .bar{position:absolute;top:23px;left:7%;width:86%;height:8px;background:#e6f0fa;z-index:0;border-radius:4px;}" +
             ".progressbar .bar-active{position:absolute;top:23px;left:7%;height:8px;background:linear-gradient(90deg,#0057b7 0%,#3eb6e7 100%);z-index:0;border-radius:4px;transition:width .5s;}" +
-            // --- Steps
             ".step{display:none;}" +
             ".step.active{display:block;animation:fadein .5s;}" +
             "@keyframes fadein{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}" +
-            // --- Inputs and buttons
             "label{display:block;margin:1em 0 0.3em 0;font-weight:600;color:#0033a0;font-size:1.07em;}" +
             "input[type=text], input[type=number]{width:97%;padding:0.8em;margin-bottom:1.3em;border:1px solid #d1dbe6;border-radius:9px;font-size:1.08em;background:#f7fbfd;}" +
             "button{background:linear-gradient(90deg,#0057b7 0%,#3eb6e7 100%);color:#fff;padding:0.8em 2.3em;border:none;border-radius:9px;font-size:1.12em;font-weight:bold;cursor:pointer;box-shadow:0 2px 10px #0057b710;transition:filter 0.18s;}" +
             "button:hover{filter:brightness(1.08);}" +
-            // --- Results
             ".resultsSection{display:none;margin-top:2em;animation:fadein .7s;}" +
             ".resultsSection.active{display:block;}" +
             ".resultsTitle{font-size:1.3em;font-weight:700;color:#0057b7;margin-bottom:.6em;}" +
             ".resultsList{background:#eef6fc;border-radius:12px;padding:1.2em 1.5em;font-size:1.04em;color:#223;box-shadow:0 2px 8px #0057b722;margin-bottom:1.7em;line-height:1.7;}" +
             ".summary{background:#eef6fb;color:#0057b7;padding:1em 1.5em;border-radius:10px;margin-bottom:1em;font-size:1.09em;}" +
-            // --- Footer
             ".repo-link{display:inline-block;margin-top:2em;padding:0.65em 1.5em;background:#0057b7;color:#fff;border-radius:8px;text-decoration:none;font-weight:500;box-shadow:0 2px 10px #0057b788;transition:background 0.2s;}" +
             ".repo-link:hover{background:#0033a0;}" +
             ".footer{margin-top:2em;text-align:center;color:#0057b7;}" +
@@ -115,17 +109,10 @@ public class HomeController {
             "</head>" +
             "<body>" +
             "<div class='container'>" +
-            // Logo + Title
             "<div class='logo-block'><img class='logo-img' src='" + logoUrl + "' alt='Cognizant Logo'/></div>" +
             "<div class='title-block'><span class='title'>Vibe Coding Project 2025</span></div>" +
-
-            // Notice
             "<div class='notice'><span class='icon'>ℹ️</span> <span>Please complete <strong>all fields below</strong> to search for the <strong>Top 10 Cheapest Houses per Square Foot</strong>. Both Address and Radius are <strong>mandatory</strong>.</span></div>" +
-
-            // Instructions
             "<div style='text-align:center;font-size:1.18em;color:#4a5a6a;margin-bottom:1em;'>Find the best value homes near you.<br>Follow the three steps below!</div>" +
-
-            // Progress Bar
             "<div class='progressbar'>" +
                 "<div class='bar'></div>" +
                 "<div id='progressActiveBar' class='bar-active' style='width:0%;'></div>" +
@@ -133,22 +120,16 @@ public class HomeController {
                 "<div class='progressstep' id='pb2'><span class='progresscircle'>2</span><div class='progresslabel'>Radius</div></div>" +
                 "<div class='progressstep' id='pb3'><span class='progresscircle'>3</span><div class='progresslabel'>Review</div></div>" +
             "</div>" +
-
-            // Step 1
             "<div id='step1' class='step active'>" +
             "<label for='address'>Step 1: <strong>Enter Address, State, Zip Code</strong></label>" +
             "<input type='text' id='address' placeholder='e.g. 123 Main St, City, ST 12345' autocomplete='street-address' required />" +
             "<button type='button' onclick='nextStep1()'>Next &rarr;</button>" +
             "</div>" +
-
-            // Step 2
             "<div id='step2' class='step'>" +
             "<label for='radius'>Step 2: <strong>Enter Radius (miles)</strong></label>" +
             "<input type='number' id='radius' min='1' max='500' value='100' required />" +
             "<button type='button' onclick='nextStep2()'>Next &rarr;</button>" +
             "</div>" +
-
-            // Step 3
             "<div id='step3' class='step'>" +
             "<div class='summary'>" +
             "<strong>Review Your Criteria:</strong><br>" +
@@ -157,13 +138,10 @@ public class HomeController {
             "</div>" +
             "<button type='button' onclick='submitCheapest()'>View Top 10 Cheapest Houses</button>" +
             "</div>" +
-
-            // Results section
             "<div id='resultsSection' class='resultsSection'>" +
             "<div class='resultsTitle'>Top 10 Cheapest Houses per Sq. Foot</div>" +
             "<iframe id='resultsFrame'></iframe>" +
             "</div>" +
-
             "<a class='repo-link' href='https://github.com/edecampos/Vibe-Coding' target='_blank'>💻 View GitHub Repository</a>" +
             "<div class='footer'><strong>Made for the 2025 Coding Challenge</strong> &mdash; Powered by Cognizant</div>" +
             "</div>" +
