@@ -9,21 +9,37 @@ public class HomeController {
 
     @GetMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
     public String home() {
-        String logoUrl = "https://www.cognizant.com/content/dam/cognizant/images/logo/Cognizant_Logo_Blue.png";
+        // Use a reliable, hotlinkable PNG logo (Wikimedia's PNG version)
+        String logoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Cognizant_logo.svg/512px-Cognizant_logo.svg.png";
 
         return "<html>" +
-            "<head><title>Welcome to Vibe Coding Project 2025!</title>" +
+            "<head><title>Vibe Coding Project 2025</title>" +
             "<meta name='viewport' content='width=device-width,initial-scale=1'/>" +
             "<link rel='icon' href='" + logoUrl + "'/>" +
             "<style>" +
-            "body{font-family:'Segoe UI',Arial,sans-serif;" +
-            "margin:0;padding:0;min-height:100vh;overflow-x:hidden;" +
-            "background:#0057b7;" +
-            "background-image: linear-gradient(120deg,#0057b7 0%,#3eb6e7 100%);" +
-            "animation: gradientMove 8s ease-in-out infinite alternate;" +
+            // Animated gradient background
+            "body{font-family:'Segoe UI',Arial,sans-serif;min-height:100vh;margin:0;padding:0;overflow-x:hidden;" +
+            "background: linear-gradient(-45deg, #0057b7, #3eb6e7, #0057b7, #3eb6e7);" +
+            "background-size: 400% 400%;" +
+            "animation: gradientBG 14s ease-in-out infinite;" +
             "position:relative;}" +
-            "@keyframes gradientMove {0%{background-position:0% 50%;}100%{background-position:100% 50%;}}" +
-            "body::before{content:'';position:fixed;z-index:0;top:50%;left:50%;transform:translate(-50%,-50%);background:url('" + logoUrl + "') no-repeat center center;opacity:0.10;background-size:600px;width:600px;height:200px;pointer-events:none;}" +
+            "@keyframes gradientBG {" +
+            " 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;}}" +
+
+            // Watermark logo
+            "body::before{" +
+            "content:'';" +
+            "position:fixed;" +
+            "z-index:0;" +
+            "top:55%;left:50%;" +
+            "transform:translate(-50%,-50%);" +
+            "background:url('" + logoUrl + "') no-repeat center center;" +
+            "opacity:0.11;" +
+            "background-size:700px;" +
+            "width:700px;height:200px;" +
+            "pointer-events:none;" +
+            "}" +
+
             ".container{position:relative;z-index:1;max-width:640px;background:#fff;border-radius:18px;box-shadow:0 8px 36px #0057b722;margin:3em auto 2em auto;padding:2.2em;}" +
             ".logo-row{display:flex;align-items:center;justify-content:center;margin-bottom:1.3em;}" +
             ".logo-img{height:48px;margin-right:20px;background:#fff;border-radius:8px;box-shadow:0 2px 8px #0057b710;}" +
@@ -32,14 +48,14 @@ public class HomeController {
             ".notice .icon{font-size:1.65em;vertical-align:middle;}" +
             ".notice strong{color:#0033a0;}" +
 
-            ".progressbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:2em;}" +
-            ".progressstep{flex:1;text-align:center;position:relative;}" +
-            ".progresscircle{width:38px;height:38px;background:#e6f0fa;border-radius:50%;display:inline-block;line-height:38px;font-weight:700;color:#0057b7;font-size:1.15em;box-shadow:0 2px 8px #0057b710;transition:background .3s, color .3s;}" +
+            // Progress bar
+            ".progressbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:2em;position:relative;height:62px;}" +
+            ".progressstep{flex:1;text-align:center;position:relative;z-index:1;}" +
+            ".progresscircle{width:40px;height:40px;background:#e6f0fa;border-radius:50%;display:inline-block;line-height:40px;font-weight:700;color:#0057b7;font-size:1.2em;box-shadow:0 2px 8px #0057b710;transition:background .3s, color .3s;position:relative;top:0;}" +
             ".progressstep.active .progresscircle{background:linear-gradient(90deg,#0057b7 0%,#3eb6e7 100%);color:#fff;box-shadow:0 4px 12px #0057b722;}" +
-            ".progresslabel{margin-top:6px;font-size:0.98em;color:#0057b7;font-weight:500;}" +
-            ".progressbar::after{content:'';position:absolute;left:0;right:0;top:19px;height:6px;z-index:-1;background:#e6f0fa;border-radius:3px;}" +
-            ".progressbar .progressstep:not(:last-child)::after{content:'';position:absolute;top:19px;right:-50%;width:100%;height:6px;background:#e6f0fa;z-index:-1;border-radius:3px;}" +
-            ".progressstep.active:not(:last-child)::after{background:linear-gradient(90deg,#0057b7 0%,#3eb6e7 100%);}" +
+            ".progresslabel{margin-top:6px;font-size:1em;color:#0057b7;font-weight:600;}" +
+            ".progressbar .bar{position:absolute;top:19px;left:6%;width:88%;height:6px;background:#e6f0fa;z-index:0;border-radius:3px;}" +
+            ".progressbar .bar-active{position:absolute;top:19px;left:6%;height:6px;background:linear-gradient(90deg,#0057b7 0%,#3eb6e7 100%);z-index:0;border-radius:3px;transition:width .5s;}" +
 
             ".step{display:none;}" +
             ".step.active{display:block;animation:fadein .5s;}" +
@@ -50,7 +66,6 @@ public class HomeController {
             "button{background:linear-gradient(90deg,#0057b7 0%,#3eb6e7 100%);color:#fff;padding:0.7em 2.2em;border:none;border-radius:8px;font-size:1.07em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px #0057b710;transition:filter 0.18s;}" +
             "button:hover{filter:brightness(1.08);}" +
 
-            "#resultsFrame{width:100%;max-width:900px;height:480px;border:none;box-shadow:0 2px 10px #0033a055;margin:2em auto;display:none;border-radius:12px;background:#f4f8fb;}" +
             ".resultsSection{display:none;margin-top:1.7em;animation:fadein .7s;}" +
             ".resultsSection.active{display:block;}" +
             ".resultsTitle{font-size:1.3em;font-weight:700;color:#0057b7;margin-bottom:.6em;}" +
@@ -62,8 +77,14 @@ public class HomeController {
             ".footer strong{color:#0033a0;}" +
             "</style>" +
 
-            // Progress bar logic and smooth scroll
             "<script>" +
+            // Progress bar JS: update animated active bar
+            "function updateProgressBar(step) {" +
+            "  var bar = document.getElementById('progressActiveBar');" +
+            "  var widths = ['0%', '49%', '98%'];" +
+            "  bar.style.width = widths[step-1];" +
+            "}" +
+
             "function showStep(step) {" +
             "  for(var i=1;i<=3;i++){" +
             "    document.getElementById('step'+i).classList.remove('active');" +
@@ -71,6 +92,7 @@ public class HomeController {
             "  }" +
             "  document.getElementById('step'+step).classList.add('active');" +
             "  document.getElementById('pb'+step).classList.add('active');" +
+            "  updateProgressBar(step);" +
             "}" +
             "function nextStep1() {" +
             "  var address = document.getElementById('address').value.trim();" +
@@ -98,10 +120,11 @@ public class HomeController {
             "  document.getElementById('resultsSection').classList.add('active');" +
             "  setTimeout(function(){" +
             "    document.getElementById('resultsSection').scrollIntoView({behavior:'smooth',block:'start'});" +
-            "  }, 300);" +
+            "  }, 350);" +
             "}" +
             "window.onload = function() { showStep(1); };" +
             "</script>" +
+
             "</head>" +
             "<body>" +
             "<div class='container'>" +
@@ -115,7 +138,9 @@ public class HomeController {
             "<div style='text-align:center;font-size:1.13em;color:#4a5a6a;margin-bottom:1em;'>Find the best value homes near you.<br>Follow the three steps below!</div>" +
 
             // Progress Bar
-            "<div class='progressbar' style='position:relative;margin-bottom:2em;'>" +
+            "<div class='progressbar'>" +
+                "<div class='bar'></div>" +
+                "<div id='progressActiveBar' class='bar-active' style='width:0%;'></div>" +
                 "<div class='progressstep active' id='pb1'><span class='progresscircle'>1</span><div class='progresslabel'>Address</div></div>" +
                 "<div class='progressstep' id='pb2'><span class='progresscircle'>2</span><div class='progresslabel'>Radius</div></div>" +
                 "<div class='progressstep' id='pb3'><span class='progresscircle'>3</span><div class='progresslabel'>Review</div></div>" +
