@@ -29,8 +29,14 @@ public class HouseController {
         sb.append("<html><head><title>Cheapest Houses</title>");
         sb.append("<meta name='viewport' content='width=device-width,initial-scale=1'/>");
         sb.append("<style>");
-        sb.append(".results-content { border: 3px solid #e53935; border-radius: 10px; padding: 18px; background: transparent; }");
-        sb.append(".results-table { width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.93); border-radius:10px; box-shadow:0 2px 14px rgba(0,0,0,0.07); margin-top:20px; }");
+        // Results section with house image background
+        sb.append("#results-section { background: url('" + houseBackgroundUrl + "') no-repeat center center; background-size: cover; border-radius:12px; box-shadow:0 4px 32px rgba(0,0,0,0.10); padding:36px 26px; position:relative; }");
+        // Overlay for contrast
+        sb.append(".results-overlay { position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.84);border-radius:12px;pointer-events:none;z-index:0; }");
+        // Content above overlay
+        sb.append(".results-content { position:relative;z-index:1; }");
+        // Table style
+        sb.append(".results-table { width:100%;border-collapse:collapse;background:rgba(255,255,255,0.93);border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,0.07);margin-top:20px; }");
         sb.append(".results-table th, .results-table td { padding:16px 22px; text-align:left; border-bottom:1px solid #eee; font-size:1.09rem; word-break:break-word; }");
         sb.append(".results-table th { background:#f6f7fa; font-weight:700; font-size:1.13rem; }");
         sb.append(".results-table tr:last-child td { border-bottom:none; }");
@@ -42,11 +48,13 @@ public class HouseController {
         sb.append("</head><body>");
         sb.append("<div class='page-section'>");
         sb.append("<button onclick='scrollToResults()' style='display:block;margin:0 auto 30px auto;padding:14px 36px;font-size:1.2em;background:#0095ff;color:#fff;border:none;border-radius:8px;box-shadow:0 2px 10px #0057b722;cursor:pointer;'>View Results</button>");
-        sb.append("<div class='separator'></div>");
+        sb.append("<div class='separator' style='width:100%;height:12px;background:linear-gradient(90deg,#3eb6e7 60%,#00c48c);border-radius:8px;margin:36px 0 24px 0;'></div>");
+        // Results section
         sb.append("<div id='results-section'>");
         sb.append("<div class='results-overlay'></div>");
         sb.append("<div class='results-content'>");
         sb.append("<h2 style='color:#0057b7;'>Top 10 Cheapest Houses per Sq. Foot</h2>");
+        // No parent div - just the table!
         sb.append("<table class='results-table'>");
         sb.append("<thead><tr>");
         sb.append("<th>Address</th>");
